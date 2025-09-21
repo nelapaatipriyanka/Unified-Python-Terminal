@@ -1,0 +1,96 @@
+# Unified Python Terminal
+
+A **Python-based terminal application** that supports both **direct commands** and **NLP (natural language) commands**, with history tracking, system monitoring, and confirmation messages for file/folder operations.  
+
+This project is hosted as a **Flask web app**, so you can run it in your browser and execute commands interactively.
+
+
+## Features
+
+- Execute standard terminal commands: `ls`, `cd`, `pwd`, `mkdir`, `rmdir`, `rm`, `touch`, `mv`, `cp`, `cat`, `echo`, etc.
+- NLP command support (e.g., "create file test.txt", "list directory folder1")
+- Maintains **command history** with timestamp
+- Displays **CPU, memory, and running processes**
+- Confirmation messages for file/folder operations like creation, deletion, renaming, copying
+- Cross-platform: Works on **Windows** and **Linux**
+- Integrated into a **Flask web app** for easy browser-based access
+
+
+
+## Installation
+
+1. **Clone the repository**  
+```bash
+git clone <your-github-repo-url>
+cd <repository-folder>
+````
+
+2. **Install required Python libraries**
+
+
+3. **Run the Flask app**
+
+```bash
+python app.py
+```
+
+4. **Open the web terminal**
+
+* Open your browser and go to: `http://127.0.0.1:5000`
+* Start executing commands directly in the browser interface
+
+
+
+## Usage
+
+### Example NLP commands
+
+| NLP Command                         | Terminal Command               |
+| ----------------------------------- | ------------------------------ |
+| `create file test.txt`              | `touch test.txt`               |
+| `create folder folder1`             | `mkdir folder1`                |
+| `delete file test.txt`              | `rm test.txt`                  |
+| `rename file old.txt to new.txt`    | `mv old.txt new.txt`           |
+| `copy file.txt to folder1/file.txt` | `cp file.txt folder1/file.txt` |
+| `show contents of file.txt`         | `cat file.txt`                 |
+| `list directory folder1`            | `ls folder1`                   |
+
+### System monitoring
+
+* `cpu` → Displays CPU usage per core
+* `memory` → Displays total, used, free memory
+* `processes` → Displays top 50 running processes
+
+
+
+## Requirements
+
+* Python 3.10+
+* Libraries:
+
+Flask==3.1.2
+Flask-Cors==6.0.1
+psutil==5.9.6
+readline (optional, improves terminal experience on Linux/Mac)
+* Operating System: Windows or Linux
+
+
+
+project/
+│
+├─ app.py              # Flask web application entry
+├─ terminal.py         # Core terminal functionality
+├─ nlp_terminal.py     # NLP command parsing
+├─ terminal_history.txt# Saved command history
+├─ requirements.txt    # Required Python libraries
+└─ README.md           # Project documentation
+
+
+## Notes
+
+* The terminal is currently running in **development mode**, do not use in production.
+* For Windows users, the `readline` module is optional.
+* All commands return **confirmation messages** for creation, deletion, renaming, and copying operations.
+
+
+* After running `python app.py`, open: [http://127.0.0.1:5000](http://127.0.0.1:5000) in your browser to interact with the terminal.

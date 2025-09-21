@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Python Web Terminal</title>
+    <style>
+        body { font-family: monospace; background: #1e1e1e; color: #c5c5c5; padding: 20px; }
+        #output { white-space: pre-wrap; margin-bottom: 10px; }
+        input { width: 100%; padding: 8px; background: #2e2e2e; color: #c5c5c5; border: none; }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center; margin-top: 2px;">Command Promt</h1>
+    <div id="output"></div>
+    <input id="command" placeholder="Type command and press Enter" autofocus>
+
+    <script>
+        const input = document.getElementById("command");
+        const output = document.getElementById("output");
+
+        input.addEventListener("keydown", function(e){
+            if(e.key === "Enter") {
+                const cmd = input.value;
+                output.innerText += "> " + cmd + "\n";
+                fetch("/execute", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ command: cmd })
+                })
+                .then(res => res.json())
+                .then(data => {
+                    output.innerText += data.output + "\n";
+                    output.scrollTop = output.scrollHeight;
+                });
+                input.value = "";
+            }
+        });
+    </script>
+</body>
+</html>
